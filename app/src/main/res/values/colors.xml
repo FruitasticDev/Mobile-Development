@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="red">#E53935</color>
+    <color name="green">#43A047</color>
+    <color name="blue">#1E88E5</color>
+
+    <color name="grey">#F5F5F5</color>
+    <color name="red_light">#FFCDD2</color>
+
+    <!--Night Mode-->
+    <color name="red_night">#B71C1C</color>
+    <color name="green_night">#2E7D32</color>
+    <color name="blue_night">#1565C0</color>
+
+    <color name="bg_night">#121212</color>
+    <color name="surface_night">#1E1E1E</color>
+    <color name="bottom_night">#3E2723</color>
+
+</resources>

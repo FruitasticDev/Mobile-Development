@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Fruitastic</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!--Bottom Navigation-->
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--Home Fragment-->
+    <string name="upload">Upload</string>
+    <string name="capture">Capture</string>
+    <string name="analyze">Analyze</string>
+
+</resources>
