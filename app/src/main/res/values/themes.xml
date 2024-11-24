@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Fruitastic" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+
         <item name="colorPrimary">@color/red</item>
-        <item name="colorSurfaceContainer">@color/green</item>
+        <item name="colorSurfaceContainer">@color/white</item>
         <item name="colorOnSurface">@color/red</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="colorSecondaryContainer">@color/red_light</item>
@@ -12,10 +12,20 @@
 
         <item name="colorPrimaryInverse">@color/red_light</item>
 
-        <item name="colorSurfaceContainerHigh">@color/grey</item>
-
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Fruitastic" parent="Base.Theme.Fruitastic" />
+
+    <style name="TextAppearance.BottomNavigation" parent="TextAppearance.AppCompat.Caption">
+        <item name="fontFamily">@font/nunito_800_extrabold</item>
+        <item name="android:fontFamily">@font/nunito_800_extrabold</item>
+    </style>
+
+    <!--Splashscreen Theme-->
+    <style name="Theme.Fruitastic.Splashscreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splashscreen_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Fruitastic</item>
+    </style>
 </resources>
