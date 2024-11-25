@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Fruitastic</string>
+    <string name="slogan">Scan your fruit here</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!--Bottom Navigation-->
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_setting">Settings</string>
+
+    <!--Home Fragment-->
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="analyze">Analyze</string>
+    <string name="image_preview">Image Preview</string>
+    <string name="no_photo_selected">No photo selected</string>
+    <string name="empty_image_warning">Please insert the image file first.</string>
+    <string name="crop_button">Crop Button</string>
+    <string name="result_title">Result:</string>
+
+    <!--Item History-->
+    <string name="result">Result</string>
+    <string name="time">Time</string>
+
+    <!--Settings Fragment-->
+    <string name="profile_image">Profile Image</string>
+    <string name="my_account">My Account</string>
+    <string name="theme">Theme</string>
+    <string name="value_theme">Value Theme</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="save_icon">Save Icon</string>
+    <string name="theme_icon">Theme Icon</string>
+    <string name="value_save">Value Save</string>
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+
+
+</resources>
