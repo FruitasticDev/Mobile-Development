@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.fruitastic.R
 import com.fruitastic.databinding.FragmentSettingBinding
 
@@ -35,13 +33,13 @@ class SettingFragment : Fragment() {
 
         viewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 switchTheme.isChecked = true
                 binding.tvValueTheme.text = getString(R.string.dark)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 switchTheme.isChecked = false
                 binding.tvValueTheme.text = getString(R.string.light)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
@@ -55,7 +53,7 @@ class SettingFragment : Fragment() {
             }
         }
 
-        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+        switchTheme.setOnCheckedChangeListener { _, isChecked ->
             viewModel.saveThemeSetting(isChecked)
         }
         switchAutoSave.setOnCheckedChangeListener { _, isChecked ->

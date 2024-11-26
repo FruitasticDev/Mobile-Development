@@ -27,7 +27,6 @@ import com.fruitastic.ui.setting.SettingPreferences
 import com.fruitastic.ui.setting.SettingViewModel
 import com.fruitastic.ui.setting.dataStore
 import com.yalantis.ucrop.UCrop
-import kotlinx.coroutines.delay
 import java.io.File
 
 class HomeFragment : Fragment() {
@@ -35,7 +34,10 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Intent>
-    private var currentImageUri: Uri? = null
+    private var cameraImageUri: Uri? = null
+
+    private val viewModel: HomeViewModel by viewModels ()
+
     private val viewModelHistory: HistoryViewModel by viewModels {
         ViewModelFactory.getInstance(requireActivity())
     }
@@ -45,7 +47,6 @@ class HomeFragment : Fragment() {
         )
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,7 +55,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        currentImageUri = null
+        if (viewModel.currentImageUri == null) {
+            binding.previewImageView.setImageResource(R.drawable.placeholder)
+        } else {
+            showImage()
+        }
 
         cropActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -62,7 +67,7 @@ class HomeFragment : Fragment() {
                 if (data != null) {
                     val resultUri = UCrop.getOutput(data)
                     if (resultUri != null) {
-                        currentImageUri = resultUri
+                        viewModel.currentImageUri = resultUri
                         showImage()
                     }
                 }
@@ -76,7 +81,7 @@ class HomeFragment : Fragment() {
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCamera() }
         binding.analyzeButton.setOnClickListener {
-            currentImageUri?.let {
+            viewModel.currentImageUri?.let {
                 showResult(it)
             } ?: run {
                 showToast(getString(R.string.empty_image_warning))
@@ -84,6 +89,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    //Start Gallery
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
@@ -92,42 +98,50 @@ class HomeFragment : Fragment() {
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
         if (uri != null) {
-            currentImageUri = uri
+            viewModel.currentImageUri = uri
             showImage()
         } else {
             showToast(getString(R.string.no_photo_selected))
         }
     }
 
+    // Start Camera
     private fun startCamera() {
-        currentImageUri = getImageUri(requireContext())
-        launcherIntentCamera.launch(currentImageUri)
+        cameraImageUri = getImageUri(requireContext())
+        launcherIntentCamera.launch(cameraImageUri)
     }
 
     private val launcherIntentCamera = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { isSuccess ->
         if (isSuccess) {
+            viewModel.currentImageUri = cameraImageUri
+            showImage()
+        } else {
             showImage()
         }
     }
 
+    //Show Image
     private fun showImage() {
-        currentImageUri?.let {
+        viewModel.currentImageUri?.let {
             Glide.with(binding.previewImageView.context)
                 .load(Uri.parse(it.toString()))
                 .transform(RoundedCorners(64)).into(binding.previewImageView)
             binding.cropButton.visibility = View.VISIBLE
             binding.cropButton.setOnClickListener {
-                currentImageUri?.let { uri ->
+                viewModel.currentImageUri?.let { uri ->
                     startCrop(uri)
                 }
             }
             binding.tvTitleResult.visibility = View.GONE
             binding.result.visibility = View.GONE
+        } ?: run {
+            binding.previewImageView.setImageResource(R.drawable.placeholder)
         }
     }
 
+    // Start Crop
     private fun startCrop(uri: Uri) {
         val timestamp = System.currentTimeMillis()
         val destinationUri = Uri.fromFile(File(requireContext().cacheDir, "cropped_image$timestamp.jpg"))
@@ -147,6 +161,7 @@ class HomeFragment : Fragment() {
         return options
     }
 
+    // Show Result
     private fun showResult(uri: Uri) {
         val categories = arrayOf("Good", "Mild", "Rotten")
         val category = categories.random()
@@ -181,6 +196,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // Save to History
     private fun saveToHistory(uri: Uri, result: String, score: Int) {
         val currentTime = System.currentTimeMillis()
         val historyEntity = HistoryEntity(
