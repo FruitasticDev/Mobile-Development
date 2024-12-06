@@ -10,6 +10,7 @@
         <item name="colorSecondaryContainer">#5C1715</item>
         <item name="colorOnSecondaryContainer">#F5B0AE</item>
         <item name="android:colorBackground">@color/black</item>
+
     </style>
 
     <!--Splashscreen Theme-->
