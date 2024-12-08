@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fruitastic.R
+import com.fruitastic.data.pref.UserModel
 import com.fruitastic.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
@@ -32,6 +33,17 @@ class SettingFragment : Fragment() {
 
         val switchTheme = binding.switchTheme
         val switchAutoSave = binding.switchAutoSave
+
+        viewModel.getSession().observe(viewLifecycleOwner) { userModel: UserModel? ->
+            userModel?.let {
+                binding.accountName.text = it.name
+                binding.accountEmail.text = it.email
+            }
+        }
+
+        binding.myAccountGroup.setOnClickListener{
+            viewModel.logout()
+        }
 
         viewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

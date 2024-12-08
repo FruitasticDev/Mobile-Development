@@ -6,10 +6,13 @@ import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.data.local.room.HistoryDao
 import com.fruitastic.data.pref.AppPreferences
 import com.fruitastic.data.pref.UserModel
+import com.fruitastic.data.remote.response.LoginResponse
+import com.fruitastic.data.remote.response.RegisterResponse
+import com.fruitastic.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
 
 class Repository private constructor(
-//    private val apiService: ApiService,
+    private val apiService: ApiService,
     private val historyDao: HistoryDao,
     private val appPreferences: AppPreferences
 
@@ -45,6 +48,14 @@ class Repository private constructor(
         appPreferences.logout()
     }
 
+    suspend fun register(name: String, email: String, password: String, ): RegisterResponse {
+        return apiService.register(name, email, password)
+    }
+
+    suspend fun login(email: String, password: String): LoginResponse {
+        return apiService.login(email, password)
+    }
+
     fun getHistory(): LiveData<List<HistoryEntity>> {
         return historyDao.getHistory()
     }
@@ -59,12 +70,12 @@ class Repository private constructor(
         private var instance: Repository? = null
 
         fun getInstance(
-//            apiService: ApiService,
+            apiService: ApiService,
             historyDao: HistoryDao,
             appPreferences: AppPreferences
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(historyDao, appPreferences)
+                instance ?: Repository(apiService, historyDao, appPreferences)
             }.also { instance = it }
     }
 }

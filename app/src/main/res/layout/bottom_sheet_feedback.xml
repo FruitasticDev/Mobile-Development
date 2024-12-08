@@ -38,5 +38,5 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/green"
         android:textColor="@color/white"
-        android:text="@string/subimt"/>
+        android:text="@string/submit"/>
 </LinearLayout>

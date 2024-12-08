@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.fruitastic.data.Repository
+import com.fruitastic.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class SettingViewModel(private val repository: Repository) : ViewModel() {
@@ -30,6 +31,16 @@ class SettingViewModel(private val repository: Repository) : ViewModel() {
     fun saveAutoSaveSetting(isAutoSaveActive: Boolean) {
         viewModelScope.launch {
             repository.saveAutoSaveSetting(isAutoSaveActive)
+        }
+    }
+
+    fun getSession(): LiveData<UserModel> {
+        return repository.getSession().asLiveData()
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            repository.logout()
         }
     }
 }

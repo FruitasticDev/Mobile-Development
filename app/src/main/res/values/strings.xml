@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Fruitastic</string>
     <string name="slogan">Scan your fruit here</string>
-    <string name="title_activity_main">MainActivity</string>
 
     <!--Bottom Navigation-->
     <string name="title_home">Home</string>
@@ -17,6 +16,9 @@
     <string name="empty_image_warning">Please insert the image file first.</string>
     <string name="crop_button">Crop Button</string>
     <string name="result_title">Result:</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="input_your_feedback">Input your feedback</string>
+    <string name="please_input_feedback_first">Please input feedback first</string>
 
     <!--Item History-->
     <string name="result">Result</string>
@@ -34,28 +36,42 @@
     <string name="value_save">Value Save</string>
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
-    <string name="please_input_feedback_first">Please input feedback first</string>
+    <string name="my_email">My Email</string>
 
     <!--Welcome Activity-->-
-    <string name="title_welcome_page">Selamat datang di Fruitastic!</string>
+    <string name="title_welcome_page">Welcome to Fruitastic!</string>
     <string name="message_welcome_page">Mau mengecek kesegaram buahmu? Scan di Fruitastic aja!</string>
-    <string name="signup">Daftar</string>
-    <string name="login">Masuk</string>
+    <string name="signup">Signup</string>
+    <string name="login">Login</string>
 
     <!--Signup Activity-->-
-    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="title_signup_page">Complete your information below</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
     <string name="email">Email</string>
-    <string name="password">Kata Sandi</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="register_failed">Registration Failed</string>
+    <string name="signup_success_title">Registration Successful!</string>
+    <string name="signup_success_message">An account with email %1$s has been successfully registered. Log in and get started!</string>
 
-    <string name="message_login_page">Masukkan dulu datamu ya</string>
-    <string name="title_login_page">Sudah siap untuk membagikan ceritamu?</string>
-    <string name="name">Nama</string>
-    <string name="message_main_page">Selamat Belajar di Dicoding Story.</string>
-    <string name="logout">Keluar</string>
-    <string name="send_feedback">Send Feedback</string>
-    <string name="input_your_feedback">Input your feedback</string>
-    <string name="subimt">Subimt</string>
+    <!--Login Activity-->-
+    <string name="message_login_page">Please enter your data first</string>
+    <string name="title_login_page">Ready to scan your fruit?</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="login_success_title">Logged In Successfully!</string>
+    <string name="login_success_message">An account with name %1$s has successfully logged in. Start scanning your fruit!</string>
+
     <string name="image">Image</string>
-    <string name="address">Alamat</string>
+    <string name="next_button">Next</string>
+
+    <!--Error Messages-->-
+    <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_invalid_email">Invalid email</string>
+    <string name="error_password_short">Password must be at least 8 characters</string>
+
+    <string name="logout">Logout</string>
+
+
 
 </resources>

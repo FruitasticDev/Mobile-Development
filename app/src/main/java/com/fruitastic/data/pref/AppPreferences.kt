@@ -14,8 +14,12 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "pr
 
 class AppPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
+    //Settings
     private val THEME_KEY = booleanPreferencesKey("theme_setting")
     private val AUTO_SAVE_KEY = booleanPreferencesKey("auto_save_setting")
+
+    //Session
+    private val NAME_KEY = stringPreferencesKey("name")
     private val EMAIL_KEY = stringPreferencesKey("email")
     private val TOKEN_KEY = stringPreferencesKey("token")
     private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
@@ -46,6 +50,7 @@ class AppPreferences private constructor(private val dataStore: DataStore<Prefer
 
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
+            preferences[NAME_KEY] = user.name
             preferences[EMAIL_KEY] = user.email
             preferences[TOKEN_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
@@ -55,6 +60,7 @@ class AppPreferences private constructor(private val dataStore: DataStore<Prefer
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
+                preferences[NAME_KEY] ?: "",
                 preferences[EMAIL_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false
@@ -64,7 +70,10 @@ class AppPreferences private constructor(private val dataStore: DataStore<Prefer
 
     suspend fun logout() {
         dataStore.edit { preferences ->
-            preferences.clear()
+            preferences.remove(NAME_KEY)
+            preferences.remove(EMAIL_KEY)
+            preferences.remove(TOKEN_KEY)
+            preferences.remove(IS_LOGIN_KEY)
         }
     }
 

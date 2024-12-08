@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/myAccount"
+        android:id="@+id/myAccountGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,15 +58,26 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/accountName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:text="@string/my_account"
             android:textSize="20sp"
             android:fontFamily="@font/nunito_700_bold"
             app:layout_constraintStart_toEndOf="@+id/ivProfile"
-            app:layout_constraintTop_toTopOf="@+id/ivProfile" />
+            app:layout_constraintTop_toTopOf="@+id/ivProfile"/>
+        <TextView
+            android:id="@+id/accountEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/my_email"
+            android:textSize="14sp"
+            android:fontFamily="@font/nunito_400_regular"
+            app:layout_constraintStart_toEndOf="@+id/ivProfile"
+            app:layout_constraintTop_toBottomOf="@+id/accountName"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -75,7 +86,7 @@
         android:layout_height="0.5dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myAccount"
+        app:layout_constraintTop_toBottomOf="@+id/myAccountGroup"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout

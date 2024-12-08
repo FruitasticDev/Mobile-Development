@@ -1,4 +1,4 @@
-package com.dicoding.asclepius.data
+package com.fruitastic.data
 
 sealed class Result<out R> private constructor(){
     data class Success<out T>(val data: T) : Result<T>()
