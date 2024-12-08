@@ -1,5 +1,6 @@
 package com.fruitastic.ui.home
 
+import FeedbackBottomSheet
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
@@ -86,6 +87,10 @@ class HomeFragment : Fragment() {
             } ?: run {
                 showToast(getString(R.string.empty_image_warning))
             }
+        }
+        binding.ivFeedback.setOnClickListener {
+            val feedbackBottomSheet = FeedbackBottomSheet()
+            feedbackBottomSheet.show(childFragmentManager, "FeedbackBottomSheet")
         }
     }
 
