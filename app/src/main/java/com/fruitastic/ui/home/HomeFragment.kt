@@ -21,12 +21,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.local.entity.HistoryEntity
+import com.fruitastic.data.pref.AppPreferences
 import com.fruitastic.databinding.FragmentHomeBinding
 import com.fruitastic.getImageUri
 import com.fruitastic.ui.history.HistoryViewModel
-import com.fruitastic.ui.setting.SettingPreferences
 import com.fruitastic.ui.setting.SettingViewModel
-import com.fruitastic.ui.setting.dataStore
+import com.fruitastic.data.pref.dataStore
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
@@ -43,8 +43,8 @@ class HomeFragment : Fragment() {
         ViewModelFactory.getInstance(requireActivity())
     }
     private val viewModelSetting: SettingViewModel by viewModels {
-        com.fruitastic.ui.setting.ViewModelFactory(
-            SettingPreferences.getInstance(requireActivity().application.dataStore)
+        com.fruitastic.data.pref.ViewModelFactory(
+            AppPreferences.getInstance(requireActivity().application.dataStore)
         )
     }
 
