@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.fruitastic.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.databinding.ActivityWelcomeBinding
 import com.fruitastic.ui.login.LoginActivity
 import com.fruitastic.ui.signup.SignupActivity
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : BaseActivity() {
     private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

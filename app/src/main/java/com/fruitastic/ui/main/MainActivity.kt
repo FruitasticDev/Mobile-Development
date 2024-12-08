@@ -1,8 +1,6 @@
-package com.fruitastic.ui.main
+package com.fruitastic
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -11,40 +9,26 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.fruitastic.R
-import com.fruitastic.data.pref.AppPreferences
-import com.fruitastic.data.pref.ViewModelFactory
 import com.fruitastic.databinding.ActivityMainBinding
-import com.fruitastic.data.pref.dataStore
-import com.fruitastic.ui.welcome.WelcomeActivity
+import com.fruitastic.ui.setting.SettingPreferences
+import com.fruitastic.ui.setting.dataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels { ViewModelFactory(AppPreferences.getInstance((this).application.dataStore)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
         lifecycleScope.launch {
-            val isDarkModeActive = AppPreferences.getInstance(application.dataStore).getThemeSetting().first()
+            val isDarkModeActive = SettingPreferences.getInstance(application.dataStore).getThemeSetting().first()
 
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
-
-        viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                Intent(this, WelcomeActivity::class.java).also {
-                    startActivity(it)
-                    finish()
-                }
             }
         }
 
