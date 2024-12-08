@@ -3,8 +3,8 @@ package com.fruitastic.ui.login
 import android.content.Intent
 import android.os.Bundle
 import com.fruitastic.BaseActivity
-import com.fruitastic.MainActivity
 import com.fruitastic.databinding.ActivityLoginBinding
+import com.fruitastic.ui.main.MainActivity
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginBinding

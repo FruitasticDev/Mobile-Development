@@ -34,6 +34,27 @@
     <string name="value_save">Value Save</string>
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
+    <string name="please_input_feedback_first">Please input feedback first</string>
 
+    <!--Welcome Activity-->-
+    <string name="title_welcome_page">Selamat datang di Fruitastic!</string>
+    <string name="message_welcome_page">Mau mengecek kesegaram buahmu? Scan di Fruitastic aja!</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+
+    <!--Signup Activity-->-
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk membagikan ceritamu?</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat Belajar di Dicoding Story.</string>
+    <string name="logout">Keluar</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="input_your_feedback">Input your feedback</string>
+    <string name="subimt">Subimt</string>
+    <string name="image">Image</string>
 
 </resources>

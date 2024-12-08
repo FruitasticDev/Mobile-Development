@@ -1,4 +1,4 @@
-package com.fruitastic
+package com.fruitastic.ui.main
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,13 +9,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.fruitastic.BaseActivity
+import com.fruitastic.R
+import com.fruitastic.data.pref.AppPreferences
+import com.fruitastic.data.pref.dataStore
 import com.fruitastic.databinding.ActivityMainBinding
-import com.fruitastic.ui.setting.SettingPreferences
-import com.fruitastic.ui.setting.dataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            val isDarkModeActive = SettingPreferences.getInstance(application.dataStore).getThemeSetting().first()
+            val isDarkModeActive = AppPreferences.getInstance(application.dataStore).getThemeSetting().first()
 
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

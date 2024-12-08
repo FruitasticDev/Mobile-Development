@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
-import com.fruitastic.ui.setting.SettingPreferences
-import com.fruitastic.ui.setting.dataStore
+import com.fruitastic.data.pref.AppPreferences
+import com.fruitastic.data.pref.dataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -18,7 +18,7 @@ open class BaseActivity : AppCompatActivity() {
 
     private fun applyThemeSetting() {
         lifecycleScope.launch {
-            val isDarkModeActive = SettingPreferences.getInstance(application.dataStore)
+            val isDarkModeActive = AppPreferences.getInstance(application.dataStore)
                 .getThemeSetting().first()
 
             if (isDarkModeActive) {

@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.liveData
-import com.fruitastic.data.AppExecutors
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.data.local.room.HistoryDao
 import com.fruitastic.data.pref.AppPreferences
@@ -14,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 class Repository private constructor(
 //    private val apiService: ApiService,
     private val historyDao: HistoryDao,
-    private val appExecutors: AppExecutors,
     private val appPreferences: AppPreferences
 
 ) {
@@ -65,11 +63,10 @@ class Repository private constructor(
         fun getInstance(
 //            apiService: ApiService,
             historyDao: HistoryDao,
-            appExecutors: AppExecutors,
             appPreferences: AppPreferences
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(historyDao,appExecutors, appPreferences)
+                instance ?: Repository(historyDao, appPreferences)
             }.also { instance = it }
     }
 }

@@ -27,7 +27,7 @@ class FeedbackBottomSheet : BottomSheetDialogFragment() {
                 dismiss()
             } else {
                 Toast.makeText(context,
-                    getString(R.string.please_enter_feedback), Toast.LENGTH_SHORT).show()
+                    getString(R.string.please_input_feedback_first), Toast.LENGTH_SHORT).show()
             }
         }
 

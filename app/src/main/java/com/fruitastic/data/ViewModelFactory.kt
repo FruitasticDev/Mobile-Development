@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fruitastic.ui.history.HistoryViewModel
+import com.fruitastic.ui.home.HomeViewModel
 import com.fruitastic.ui.main.MainViewModel
 import com.fruitastic.ui.setting.SettingViewModel
 
@@ -17,6 +18,8 @@ class ViewModelFactory private constructor(private val repository: Repository):
             return MainViewModel(repository) as T
         } else if (modelClass.isAssignableFrom((SettingViewModel::class.java))) {
             return SettingViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom((HomeViewModel::class.java))) {
+            return HomeViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

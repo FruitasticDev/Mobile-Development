@@ -9,18 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fruitastic.R
 import com.fruitastic.data.pref.AppPreferences
-import com.fruitastic.data.pref.ViewModelFactory
 import com.fruitastic.data.pref.dataStore
 import com.fruitastic.databinding.FragmentSettingBinding
+import com.fruitastic.ui.history.HistoryViewModel
 
 class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: SettingViewModel by viewModels {
-        ViewModelFactory(
-            AppPreferences.getInstance(requireActivity().application.dataStore)
-        )
+        com.fruitastic.data.ViewModelFactory.getInstance(requireActivity())
     }
 
     override fun onCreateView(

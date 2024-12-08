@@ -37,15 +37,12 @@ class HomeFragment : Fragment() {
     private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Intent>
     private var cameraImageUri: Uri? = null
 
-    private val viewModel: HomeViewModel by viewModels ()
-
     private val viewModelHistory: HistoryViewModel by viewModels {
         ViewModelFactory.getInstance(requireActivity())
     }
-    private val viewModelSetting: SettingViewModel by viewModels {
-        com.fruitastic.data.pref.ViewModelFactory(
-            AppPreferences.getInstance(requireActivity().application.dataStore)
-        )
+
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -188,7 +185,7 @@ class HomeFragment : Fragment() {
         binding.tvTitleResult.visibility = View.VISIBLE
         binding.result.visibility = View.VISIBLE
         binding.progressIndicator.visibility = View.GONE
-        viewModelSetting.getAutoSaveSetting().observe(viewLifecycleOwner) { isAutoSaveActive ->
+        viewModel.getAutoSaveSetting().observe(viewLifecycleOwner) { isAutoSaveActive ->
             if (isAutoSaveActive) {
                 saveToHistory(uri, category, score)
             } else {
