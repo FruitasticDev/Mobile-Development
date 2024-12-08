@@ -1,7 +1,6 @@
 package com.fruitastic.data
 
 import android.content.Context
-import androidx.datastore.dataStore
 import com.fruitastic.data.local.room.HistoryDatabase
 import com.fruitastic.data.pref.AppPreferences
 import com.fruitastic.data.pref.dataStore

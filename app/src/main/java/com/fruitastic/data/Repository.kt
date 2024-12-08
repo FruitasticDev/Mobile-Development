@@ -1,9 +1,7 @@
 package com.fruitastic.data
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.liveData
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.data.local.room.HistoryDao
 import com.fruitastic.data.pref.AppPreferences

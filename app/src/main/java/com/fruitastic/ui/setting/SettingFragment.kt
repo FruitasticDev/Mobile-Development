@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fruitastic.R
-import com.fruitastic.data.pref.AppPreferences
-import com.fruitastic.data.pref.dataStore
 import com.fruitastic.databinding.FragmentSettingBinding
-import com.fruitastic.ui.history.HistoryViewModel
 
 class SettingFragment : Fragment() {
 
