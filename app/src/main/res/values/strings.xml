@@ -56,5 +56,6 @@
     <string name="input_your_feedback">Input your feedback</string>
     <string name="subimt">Subimt</string>
     <string name="image">Image</string>
+    <string name="address">Alamat</string>
 
 </resources>
