@@ -71,7 +71,7 @@
     <string name="error_password_short">Password must be at least 8 characters</string>
 
     <string name="logout">Logout</string>
-
+    <string name="auto_save_to_history">Auto save to history</string>
 
 
 </resources>
