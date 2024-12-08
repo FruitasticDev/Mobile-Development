@@ -27,7 +27,7 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.welcome.WelcomeActivity"
             android:exported="true"
             android:theme="@style/Theme.Fruitastic.Splashscreen">
             <intent-filter>
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.welcome.WelcomeActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false"/>
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
