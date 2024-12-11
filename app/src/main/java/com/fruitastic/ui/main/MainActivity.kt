@@ -1,6 +1,5 @@
 package com.fruitastic.ui.main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels

@@ -3,17 +3,13 @@ package com.fruitastic.adapter
 import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.fruitastic.R
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.databinding.ItemHistoryBinding
