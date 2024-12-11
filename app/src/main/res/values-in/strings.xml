@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fruitastic</string>
+    <string name="slogan">Cek kesegaran buahmu di Fruitastic</string>
+
+    <!--Bottom Navigation-->
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_setting">Setelan</string>
+
+    <!--Home Fragment-->
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="analyze">Analisis</string>
+    <string name="image_preview">Pratinjau Gambar</string>
+    <string name="no_photo_selected">Tidak ada foto yang dipilih</string>
+    <string name="empty_image_warning">Silakan masukkan file gambar terlebih dahulu.</string>
+    <string name="crop_button">Tombol Potong</string>
+    <string name="result_title">Hasil:</string>
+    <string name="send_feedback">Kirim Umpan Balik</string>
+    <string name="input_your_feedback">Masukkan umpan balikmu</string>
+    <string name="please_input_feedback_first">Harap masukkan umpan balik terlebih dahulu</string>
+    <string name="error_crop">Kesalahan pemotongan gambar</string>
+    <string name="title_crop_image">Potong Gambar</string>
+
+    <!--Item History-->
+    <string name="result">Hasil</string>
+    <string name="time">Waktu</string>
+
+    <!--Settings Fragment-->
+    <string name="my_account">Akun Saya</string>
+    <string name="theme">Tema</string>
+    <string name="value_theme">Nilai Tema</string>
+    <string name="dark">Gelap</string>
+    <string name="light">Terang</string>
+    <string name="save_icon">Simpan Ikon</string>
+    <string name="theme_icon">Ikon Tema</string>
+    <string name="value_save">Nilai Simpan</string>
+    <string name="active">Aktif</string>
+    <string name="inactive">Nonaktif</string>
+    <string name="my_email">Email Saya</string>
+    <string name="logout">Keluar</string>
+    <string name="auto_save_to_history">Simpan otomatis ke histori</string>
+    <string name="email_invalid">Email tidak valid</string>
+    <string name="cancel">Batal</string>
+    <string name="title_alert_logout">Konfirmasi Keluar</string>
+    <string name="message_alert_logout">Apakah Anda yakin ingin keluar dari akun Anda? Ini akan mengakhiri sesi Anda.</string>
+
+    <!--Welcome Activity-->
+    <string name="title_welcome_page">Selamat Datang di Fruitastic!</string>
+    <string name="message_welcome_page">Cek kesegaran buahmu di Fruitastic!</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+
+    <!--Signup Activity-->
+    <string name="title_signup_page">Lengkapi informasi Anda di bawah ini</string>
+    <string name="name">Nama</string>
+    <string name="address">Alamat</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="submit">Kirim</string>
+    <string name="register_failed">Pendaftaran Gagal</string>
+    <string name="signup_success_title">Pendaftaran Berhasil!</string>
+    <string name="signup_success_message">Akun dengan email %1$s berhasil terdaftar. Masuk dan mulai gunakan Fruitastic!</string>
+
+    <!--Login Activity-->
+    <string name="message_login_page">Silakan masukkan data Anda terlebih dahulu</string>
+    <string name="title_login_page">Siap untuk mengecek kesegaran buah Anda?</string>
+    <string name="login_failed">Gagal Masuk!</string>
+    <string name="login_success_title">Berhasil Masuk!</string>
+    <string name="login_success_message">Akun dengan nama %1$s berhasil masuk. Mulai cek kesegaran buahmu!</string>
+    <string name="image">Gambar</string>
+    <string name="next_button">Lanjut</string>
+
+    <!--Error Messages-->
+    <string name="error_empty_name">Nama diperlukan</string>
+    <string name="error_empty_address">Alamat diperlukan</string>
+    <string name="error_invalid_email">Masukkan email yang valid</string>
+    <string name="error_password_short">Kata sandi harus memiliki setidaknya 8 karakter</string>
+
+    <string name="value_language">Nilai Bahasa</string>
+    <string name="language">Bahasa</string>
+    <string name="language_icon">Ikon Bahasa</string>
+    <string name="title_alert_language">Pilih Bahasa</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="language_english">English</string>
+    <string name="ok">Oke</string>
+</resources>

@@ -19,13 +19,14 @@
     <string name="send_feedback">Send Feedback</string>
     <string name="input_your_feedback">Input your feedback</string>
     <string name="please_input_feedback_first">Please input feedback first</string>
+    <string name="error_crop">Crop error</string>
+    <string name="title_crop_image">Crop Image</string>
 
     <!--Item History-->
     <string name="result">Result</string>
     <string name="time">Time</string>
 
     <!--Settings Fragment-->
-    <string name="profile_image">Profile Image</string>
     <string name="my_account">My Account</string>
     <string name="theme">Theme</string>
     <string name="value_theme">Value Theme</string>
@@ -37,10 +38,16 @@
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
     <string name="my_email">My Email</string>
+    <string name="logout">Logout</string>
+    <string name="auto_save_to_history">Auto save to history</string>
+    <string name="email_invalid">Email Invalid</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_alert_logout">Logout Confirmation</string>
+    <string name="message_alert_logout">Are you sure you want to log out of your account? This will end your session.</string>
 
     <!--Welcome Activity-->-
     <string name="title_welcome_page">Welcome to Fruitastic!</string>
-    <string name="message_welcome_page">Mau mengecek kesegaram buahmu? Scan di Fruitastic aja!</string>
+    <string name="message_welcome_page">Want to check the freshness of your fruit? Scan it on Fruitastic!</string>
     <string name="signup">Signup</string>
     <string name="login">Login</string>
 
@@ -61,17 +68,21 @@
     <string name="login_failed">Login Failed</string>
     <string name="login_success_title">Logged In Successfully!</string>
     <string name="login_success_message">An account with name %1$s has successfully logged in. Start scanning your fruit!</string>
-
     <string name="image">Image</string>
     <string name="next_button">Next</string>
 
     <!--Error Messages-->-
-    <string name="error_empty_name">Name cannot be empty</string>
-    <string name="error_invalid_email">Invalid email</string>
+    <string name="error_empty_name">Name is required</string>
+    <string name="error_empty_address">Address is required</string>
+    <string name="error_invalid_email">Enter a valid email</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
 
-    <string name="logout">Logout</string>
-    <string name="auto_save_to_history">Auto save to history</string>
-
+    <string name="value_language">Value Language</string>
+    <string name="language">Language</string>
+    <string name="language_icon">Language Icon</string>
+    <string name="title_alert_language">Choose Language</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="language_english">English</string>
+    <string name="ok">OK</string>
 
 </resources>

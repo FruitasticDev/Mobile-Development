@@ -26,7 +26,7 @@
             android:layout_marginTop="0dp"
             android:fontFamily="@font/nunito_700_bold"
             android:textStyle="bold"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="32dp"/>
     </LinearLayout>
 
     <View
@@ -47,27 +47,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:backgroundTint="@android:color/darker_gray"
-            android:contentDescription="@string/profile_image"
-            android:src="@drawable/ic_profile_placeholder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <TextView
             android:id="@+id/accountName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="6dp"
             android:text="@string/my_account"
             android:textSize="20sp"
             android:fontFamily="@font/nunito_700_bold"
-            app:layout_constraintStart_toEndOf="@+id/ivProfile"
-            app:layout_constraintTop_toTopOf="@+id/ivProfile"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/myAccountGroup"/>
         <TextView
             android:id="@+id/accountEmail"
             android:layout_width="wrap_content"
@@ -76,7 +65,7 @@
             android:text="@string/my_email"
             android:textSize="14sp"
             android:fontFamily="@font/nunito_400_regular"
-            app:layout_constraintStart_toEndOf="@+id/ivProfile"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/accountName"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,11 +89,12 @@
 
         <ImageView
             android:id="@+id/ivThemeIcon"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="?attr/colorSecondary"
             android:contentDescription="@string/theme_icon"
-            android:src="@drawable/ic_mode_theme"
+            android:src="@drawable/ic_theme"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -113,23 +103,24 @@
             android:id="@+id/tvTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:text="@string/theme"
             android:textSize="16sp"
             android:fontFamily="@font/nunito_700_bold"
             app:layout_constraintStart_toEndOf="@+id/ivThemeIcon"
-            app:layout_constraintTop_toTopOf="@+id/ivThemeIcon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvValueTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:text="@string/value_theme"
             android:textSize="12sp"
             android:fontFamily="@font/nunito_400_regular"
             app:layout_constraintStart_toEndOf="@+id/ivThemeIcon"
-            app:layout_constraintTop_toBottomOf="@+id/tvTheme" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTheme"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switch_theme"
@@ -153,11 +144,12 @@
 
         <ImageView
             android:id="@+id/ivSaveIcon"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:backgroundTint="@android:color/darker_gray"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="?attr/colorSecondary"
             android:contentDescription="@string/save_icon"
-            android:src="@drawable/ic_save"
+            android:src="@drawable/ic_save_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -166,23 +158,24 @@
             android:id="@+id/tvSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:text="@string/auto_save_to_history"
             android:textSize="16sp"
             android:fontFamily="@font/nunito_700_bold"
             app:layout_constraintStart_toEndOf="@+id/ivSaveIcon"
-            app:layout_constraintTop_toTopOf="@+id/ivSaveIcon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvValueSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:text="@string/value_save"
             android:textSize="12sp"
             android:fontFamily="@font/nunito_400_regular"
             app:layout_constraintStart_toEndOf="@+id/ivSaveIcon"
-            app:layout_constraintTop_toBottomOf="@+id/tvSave" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSave"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switch_auto_save"
@@ -191,6 +184,86 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/languageGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivLanguageIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="?attr/colorSecondary"
+            android:contentDescription="@string/language_icon"
+            android:src="@drawable/baseline_language_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLanguageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/language"
+            android:textSize="16sp"
+            android:fontFamily="@font/nunito_700_bold"
+            app:layout_constraintStart_toEndOf="@+id/ivLanguageIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLanguageValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/value_language"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunito_400_regular"
+            app:layout_constraintStart_toEndOf="@+id/ivLanguageIcon"
+            app:layout_constraintTop_toBottomOf="@+id/tvLanguageTitle"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logoutGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/languageGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivLogoutIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:contentDescription="@string/save_icon"
+            android:src="@drawable/baseline_logout_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/logout"
+            android:textSize="16sp"
+            android:fontFamily="@font/nunito_700_bold"
+            app:layout_constraintStart_toEndOf="@+id/ivLogoutIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

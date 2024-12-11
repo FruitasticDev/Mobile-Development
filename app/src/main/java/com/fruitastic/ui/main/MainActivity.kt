@@ -1,10 +1,10 @@
 package com.fruitastic.ui.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fruitastic.BaseActivity
@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 Intent(this, WelcomeActivity::class.java).also {
@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

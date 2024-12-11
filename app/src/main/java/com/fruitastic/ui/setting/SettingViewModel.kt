@@ -34,6 +34,16 @@ class SettingViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    fun getLanguageSetting(): LiveData<String> {
+        return repository.getLanguageSetting().asLiveData()
+    }
+
+    fun saveLanguageSetting(languageCode: String) {
+        viewModelScope.launch {
+            repository.saveLanguageSetting(languageCode)
+        }
+    }
+
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }

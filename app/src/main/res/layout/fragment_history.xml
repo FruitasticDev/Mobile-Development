@@ -35,7 +35,7 @@
             android:textColor="@color/green"
             android:fontFamily="@font/nunito_700_bold"
             android:textStyle="bold"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="32dp"/>
     </LinearLayout>
 
     <View

@@ -15,18 +15,17 @@
         android:paddingBottom="8dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:theme="@style/CustomTextFieldTheme"
         app:endIconMode="clear_text"
         app:hintTextColor="@color/green"
-        app:boxStrokeColor="@color/green"
-        app:cursorColor="@color/green"
         android:hint="@string/input_your_feedback">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/feedbackInput"
             android:inputType="textMultiLine"
-            android:textColor="?attr/colorOnBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>

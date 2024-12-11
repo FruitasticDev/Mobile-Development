@@ -67,9 +67,6 @@ dependencies {
     //Glide
     implementation (libs.glide)
 
-    //Splashscreen
-    implementation (libs.androidx.core.splashscreen)
-
     //Datastore Preferences
     implementation(libs.androidx.datastore.preferences)
 

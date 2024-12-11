@@ -36,6 +36,14 @@ class Repository private constructor(
         return appPreferences.saveAutoSaveSetting(isDarkModeActive)
     }
 
+    fun getLanguageSetting(): Flow<String> {
+        return appPreferences.getLanguageSetting()
+    }
+
+    suspend fun saveLanguageSetting(language: String) {
+        appPreferences.saveLanguageSetting(language)
+    }
+
     fun getSession(): Flow<UserModel> {
         return appPreferences.getSession()
     }

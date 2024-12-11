@@ -4,16 +4,18 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import com.fruitastic.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.pref.UserModel
 import com.fruitastic.databinding.ActivityLoginBinding
 import com.fruitastic.ui.main.MainActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LoginActivity : BaseActivity() {
 
@@ -33,10 +35,26 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setupAction() {
+        binding.emailEditText.doOnTextChanged{ text, _, _, _ ->
+            if (!Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()) {
+                binding.emailEditTextLayout.error = getString(R.string.error_invalid_email)
+            } else {
+                binding.emailEditTextLayout.error = null
+            }
+        }
+
+        binding.passwordEditText.doOnTextChanged{ text, _, _, _ ->
+            if (text!!.length < 8) {
+                binding.passwordEditTextLayout.error = getString(R.string.error_password_short)
+            } else {
+                binding.passwordEditTextLayout.error = null
+            }
+        }
+
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            val isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
             val isPasswordValid = password.length >= 8
 
             if (email.isEmpty() || !isEmailValid) {
@@ -72,10 +90,10 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun showSuccessDialog(email: String) {
-        AlertDialog.Builder(this@LoginActivity).apply {
+    private fun showSuccessDialog(name: String) {
+        MaterialAlertDialogBuilder(this@LoginActivity, R.style.CustomAlertDialogTheme).apply {
             setTitle(getString(R.string.login_success_title))
-            setMessage(getString(R.string.login_success_message, email))
+            setMessage(getString(R.string.login_success_message, name))
             setPositiveButton(getString(R.string.next_button)) { _, _ ->
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

@@ -50,6 +50,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/CustomTextFieldTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -61,6 +62,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
         app:startIconDrawable="@drawable/baseline_person_24"
+        app:hintTextColor="@color/green"
+        app:errorEnabled="true"
         android:alpha="0"
         tools:alpha="100">
 
@@ -75,9 +78,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addressEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/CustomTextFieldTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/address"
@@ -86,6 +90,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
         app:startIconDrawable="@drawable/baseline_location_pin_24"
+        app:hintTextColor="@color/green"
+        app:errorEnabled="true"
         android:alpha="0"
         tools:alpha="100">
 
@@ -100,9 +106,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/CustomTextFieldTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/email"
@@ -111,6 +118,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressEditTextLayout"
         app:startIconDrawable="@drawable/baseline_email_24"
+        app:hintTextColor="@color/green"
+        app:errorEnabled="true"
         android:alpha="0"
         tools:alpha="100">
 
@@ -125,9 +134,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/CustomTextFieldTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:endIconMode="password_toggle"
@@ -136,6 +146,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
         app:startIconDrawable="@drawable/baseline_lock_24"
+        app:hintTextColor="@color/green"
+        app:errorEnabled="true"
         android:alpha="0"
         tools:alpha="100">
 
@@ -152,7 +164,7 @@
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/green"
         android:text="@string/signup"

@@ -17,6 +17,7 @@ class AppPreferences private constructor(private val dataStore: DataStore<Prefer
     //Settings
     private val THEME_KEY = booleanPreferencesKey("theme_setting")
     private val AUTO_SAVE_KEY = booleanPreferencesKey("auto_save_setting")
+    private val LANGUAGE_KEY = stringPreferencesKey("language_setting")
 
     //Session
     private val NAME_KEY = stringPreferencesKey("name")
@@ -45,6 +46,18 @@ class AppPreferences private constructor(private val dataStore: DataStore<Prefer
     suspend fun saveAutoSaveSetting(isAutoSaveActive: Boolean) {
         dataStore.edit { preferences ->
             preferences[AUTO_SAVE_KEY] = isAutoSaveActive
+        }
+    }
+
+    fun getLanguageSetting(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[LANGUAGE_KEY] ?: "en"
+        }
+    }
+
+    suspend fun saveLanguageSetting(languageCode: String) {
+        dataStore.edit { preferences ->
+            preferences[LANGUAGE_KEY] = languageCode
         }
     }
 

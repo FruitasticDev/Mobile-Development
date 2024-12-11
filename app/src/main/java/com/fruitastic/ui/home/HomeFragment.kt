@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
             } else if (result.resultCode == UCrop.RESULT_ERROR) {
                 val data = result.data
                 val cropError = UCrop.getError(data!!)
-                cropError?.let { showToast(it.message ?: "Crop error") }
+                cropError?.let { showToast(it.message ?: getString(R.string.error_crop)) }
             }
         }
 
@@ -135,6 +135,7 @@ class HomeFragment : Fragment() {
             }
             binding.tvTitleResult.visibility = View.GONE
             binding.result.visibility = View.GONE
+            binding.saveButton.visibility = View.GONE
         } ?: run {
             binding.previewImageView.setImageResource(R.drawable.placeholder)
         }
@@ -156,19 +157,19 @@ class HomeFragment : Fragment() {
         options.setFreeStyleCropEnabled(true)
         options.setShowCropGrid(true)
         options.setShowCropFrame(true)
-        options.setToolbarTitle("Crop Image")
+        options.setToolbarTitle(getString(R.string.title_crop_image))
         return options
     }
 
     // Show Result
     private fun showResult(uri: Uri) {
-        val categories = arrayOf("Good", "Mild", "Rotten")
+        val categories = arrayOf("Fresh", "Mild", "Rotten")
         val category = categories.random()
         val score = (50..100).random()
         binding.progressIndicator.visibility = View.VISIBLE
 
         val color = when (category) {
-            "Good" -> ContextCompat.getColor(requireContext(), R.color.green)
+            "Fresh" -> ContextCompat.getColor(requireContext(), R.color.green)
             "Mild" -> ContextCompat.getColor(requireContext(), R.color.orange)
             "Rotten" -> ContextCompat.getColor(requireContext(), R.color.red)
             else -> ContextCompat.getColor(requireContext(), R.color.grey)
@@ -205,7 +206,6 @@ class HomeFragment : Fragment() {
             time = currentTime,
         )
         viewModelHistory.insertHistory(historyEntity)
-        showToast("Success")
     }
 
 

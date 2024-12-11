@@ -4,20 +4,17 @@
 
         <item name="colorPrimary">@color/red</item>
         <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSurfaceContainer">@color/black</item>
-        <item name="colorOnSurface">@color/red</item>
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="colorSecondaryContainer">#5C1715</item>
-        <item name="colorOnSecondaryContainer">#F5B0AE</item>
+
+        <item name="colorSecondaryContainer">@color/red_dark</item>
+        <item name="colorOnSecondaryContainer">@color/red_light</item>
+
         <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
 
     </style>
 
-    <!--Splashscreen Theme-->
-    <style name="Theme.Fruitastic.Splashscreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splashscreen_logo</item>
-        <item name="postSplashScreenTheme">@style/Theme.Fruitastic</item>
-
+    <style name="CustomAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/green</item>
     </style>
+
 </resources>

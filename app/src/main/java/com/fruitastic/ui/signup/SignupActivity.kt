@@ -4,15 +4,17 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import com.fruitastic.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.databinding.ActivitySignupBinding
 import com.fruitastic.ui.login.LoginActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SignupActivity : BaseActivity() {
 
@@ -32,11 +34,44 @@ class SignupActivity : BaseActivity() {
     }
 
     private fun setupAction() {
+        binding.nameEditText.doOnTextChanged{ text, start, before, count ->
+            if (text!!.isEmpty()) {
+                binding.nameEditTextLayout.error = getString(R.string.error_empty_name)
+            } else {
+                binding.nameEditTextLayout.error = null
+            }
+        }
+
+        binding.addressEditText.doOnTextChanged{ text, start, before, count ->
+            if (text!!.isEmpty()) {
+                binding.addressEditTextLayout.error = getString(R.string.error_empty_address)
+            } else {
+                binding.addressEditTextLayout.error = null
+            }
+        }
+
+        binding.emailEditText.doOnTextChanged{ text, start, before, count ->
+            if (!Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()) {
+                binding.emailEditTextLayout.error = getString(R.string.error_invalid_email)
+            } else {
+                binding.emailEditTextLayout.error = null
+            }
+        }
+
+        binding.passwordEditText.doOnTextChanged{ text, start, before, count ->
+            if (text!!.length < 8) {
+                binding.passwordEditTextLayout.error = getString(R.string.error_password_short)
+            } else {
+                binding.passwordEditTextLayout.error = null
+            }
+        }
+
         binding.signupButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            val isEmailValid = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            val address = binding.addressEditText.text.toString()
+            val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
             val isPasswordValid = password.length >= 8
 
             if (name.isEmpty()){
@@ -66,7 +101,7 @@ class SignupActivity : BaseActivity() {
     }
 
     private fun showSuccessDialog(email: String) {
-        AlertDialog.Builder(this@SignupActivity).apply {
+        MaterialAlertDialogBuilder(this@SignupActivity, R.style.CustomAlertDialogTheme).apply {
             setTitle(getString(R.string.signup_success_title))
             setMessage(getString(R.string.signup_success_message, email))
             setPositiveButton(getString(R.string.next_button)) { _, _ ->
