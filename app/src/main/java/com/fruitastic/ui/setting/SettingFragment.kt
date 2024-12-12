@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.fruitastic.R
 import com.fruitastic.data.pref.UserModel
 import com.fruitastic.databinding.FragmentSettingBinding
-import com.fruitastic.setLocale
+import com.fruitastic.utils.setLocale
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class SettingFragment : Fragment() {

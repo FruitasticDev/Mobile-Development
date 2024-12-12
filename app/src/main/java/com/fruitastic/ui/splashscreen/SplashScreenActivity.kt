@@ -3,7 +3,7 @@ package com.fruitastic.ui.splashscreen
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import com.fruitastic.BaseActivity
+import com.fruitastic.utils.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.databinding.ActivitySplashScreenBinding
 import com.fruitastic.ui.main.MainActivity

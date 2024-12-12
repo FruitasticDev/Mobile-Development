@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.fruitastic.BaseActivity
+import com.fruitastic.utils.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.databinding.ActivityMainBinding

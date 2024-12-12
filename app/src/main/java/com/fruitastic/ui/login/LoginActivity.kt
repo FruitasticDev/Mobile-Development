@@ -9,13 +9,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
-import com.fruitastic.BaseActivity
+import com.fruitastic.utils.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.pref.UserModel
 import com.fruitastic.data.remote.request.LoginRequest
 import com.fruitastic.databinding.ActivityLoginBinding
 import com.fruitastic.ui.main.MainActivity
+import com.fruitastic.utils.NetworkUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class LoginActivity : BaseActivity() {
@@ -62,8 +63,10 @@ class LoginActivity : BaseActivity() {
                 showToast(getString(R.string.error_invalid_email))
             } else if (password.isEmpty() || !isPasswordValid) {
                 showToast(getString(R.string.error_password_short))
-            } else {
+            } else if (NetworkUtils.isInternetAvailable(this)){
                 viewModel.login(LoginRequest(email, password))
+            } else {
+                NetworkUtils.showInternetError(this)
             }
         }
     }

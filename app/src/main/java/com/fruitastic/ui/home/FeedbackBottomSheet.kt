@@ -11,6 +11,7 @@ import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.remote.request.FeedbackRequest
 import com.fruitastic.ui.home.HomeViewModel
+import com.fruitastic.utils.NetworkUtils
 
 class FeedbackBottomSheet : BottomSheetDialogFragment() {
 
@@ -31,7 +32,12 @@ class FeedbackBottomSheet : BottomSheetDialogFragment() {
         submitButton.setOnClickListener {
             val feedback = feedbackInput.text.toString()
             if (feedback.isNotEmpty()) {
-                viewModel.feedback(FeedbackRequest(feedback))
+                if (NetworkUtils.isInternetAvailable(requireActivity())) {
+                    viewModel.feedback(FeedbackRequest(feedback))
+                } else {
+                    NetworkUtils.showInternetError(requireActivity())
+                }
+
                 viewModel.messageFeedback.observe(viewLifecycleOwner) { message ->
                     if (message != null) {
                         showToast(message)

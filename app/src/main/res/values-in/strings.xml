@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Fruitastic</string>
     <string name="slogan">Cek kesegaran buahmu di Fruitastic</string>
+    <string name="logo">Logo</string>
 
     <!--Bottom Navigation-->
     <string name="title_home">Beranda</string>
@@ -86,7 +87,6 @@
     <string name="error_empty_address">Alamat diperlukan</string>
     <string name="error_invalid_email">Masukkan email yang valid</string>
     <string name="error_password_short">Kata sandi harus memiliki setidaknya 8 karakter</string>
-    <string name="network_error">Kesalahan jaringan</string>
-    <string name="logo">Logo</string>
+    <string name="no_internet_connection">Tidak ada koneksi internet</string>
 
 </resources>

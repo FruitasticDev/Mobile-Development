@@ -22,10 +22,11 @@ import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.databinding.FragmentHomeBinding
-import com.fruitastic.getImageUri
-import com.fruitastic.reduceFileImage
+import com.fruitastic.utils.getImageUri
+import com.fruitastic.utils.reduceFileImage
 import com.fruitastic.ui.history.HistoryViewModel
-import com.fruitastic.uriToFile
+import com.fruitastic.utils.NetworkUtils
+import com.fruitastic.utils.uriToFile
 import com.yalantis.ucrop.UCrop
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -84,7 +85,11 @@ class HomeFragment : Fragment() {
         binding.cameraButton.setOnClickListener { startCamera() }
         binding.analyzeButton.setOnClickListener {
             viewModel.currentImageUri?.let {
-                analyze(it)
+                if (NetworkUtils.isInternetAvailable(requireContext())) {
+                    analyze(it)
+                } else {
+                    NetworkUtils.showInternetError(requireContext())
+                }
             } ?: run {
                 showToast(getString(R.string.empty_image_warning))
             }

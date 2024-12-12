@@ -5,7 +5,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.fruitastic.BaseActivity
+import com.fruitastic.utils.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.databinding.ActivityWelcomeBinding
 import com.fruitastic.ui.login.LoginActivity

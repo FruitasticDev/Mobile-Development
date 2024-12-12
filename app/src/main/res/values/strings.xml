@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Fruitastic</string>
     <string name="slogan">Scan your fruit here</string>
+    <string name="logo">Logo</string>
+
 
     <!--Bottom Navigation-->
     <string name="title_home">Home</string>
@@ -85,7 +87,6 @@
     <string name="error_empty_address">Address is required</string>
     <string name="error_invalid_email">Enter a valid email</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
-    <string name="network_error">Network error</string>
-    <string name="logo">Logo</string>
+    <string name="no_internet_connection">No internet connection</string>
 
 </resources>

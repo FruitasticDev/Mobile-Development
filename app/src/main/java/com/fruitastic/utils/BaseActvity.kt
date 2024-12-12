@@ -1,4 +1,4 @@
-package com.fruitastic
+package com.fruitastic.utils
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
