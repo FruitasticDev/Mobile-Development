@@ -86,5 +86,8 @@
     <string name="error_password_short">Kata sandi harus memiliki setidaknya 8 karakter</string>
     <string name="network_error">Kesalahan jaringan</string>
     <string name="unknown_error">Kesalahaan tidak diketahui</string>
+    <string name="unknown">Tidak diketahui</string>
+    <string name="prediction_successful">Prediksi berhasil.</string>
+    <string name="logo">Logo</string>
 
 </resources>

@@ -1,7 +1,6 @@
 package com.fruitastic.ui.home
 
 import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.fruitastic.data.Repository
 import com.fruitastic.data.remote.request.FeedbackRequest
-import com.fruitastic.data.remote.response.FeedbackResponse
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
