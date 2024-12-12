@@ -45,6 +45,13 @@
     <string name="cancel">Batal</string>
     <string name="title_alert_logout">Konfirmasi Keluar</string>
     <string name="message_alert_logout">Apakah Anda yakin ingin keluar dari akun Anda? Ini akan mengakhiri sesi Anda.</string>
+    <string name="value_language">Nilai Bahasa</string>
+    <string name="language">Bahasa</string>
+    <string name="language_icon">Ikon Bahasa</string>
+    <string name="title_alert_language">Pilih Bahasa</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="language_english">English</string>
+    <string name="ok">Oke</string>
 
     <!--Welcome Activity-->
     <string name="title_welcome_page">Selamat Datang di Fruitastic!</string>
@@ -77,12 +84,7 @@
     <string name="error_empty_address">Alamat diperlukan</string>
     <string name="error_invalid_email">Masukkan email yang valid</string>
     <string name="error_password_short">Kata sandi harus memiliki setidaknya 8 karakter</string>
+    <string name="network_error">Kesalahan jaringan</string>
+    <string name="unknown_error">Kesalahaan tidak diketahui</string>
 
-    <string name="value_language">Nilai Bahasa</string>
-    <string name="language">Bahasa</string>
-    <string name="language_icon">Ikon Bahasa</string>
-    <string name="title_alert_language">Pilih Bahasa</string>
-    <string name="language_indonesia">Bahasa Indonesia</string>
-    <string name="language_english">English</string>
-    <string name="ok">Oke</string>
 </resources>

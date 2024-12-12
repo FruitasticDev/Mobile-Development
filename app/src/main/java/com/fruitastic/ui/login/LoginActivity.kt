@@ -13,6 +13,7 @@ import com.fruitastic.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.pref.UserModel
+import com.fruitastic.data.remote.request.LoginRequest
 import com.fruitastic.databinding.ActivityLoginBinding
 import com.fruitastic.ui.main.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -62,27 +63,31 @@ class LoginActivity : BaseActivity() {
             } else if (password.isEmpty() || !isPasswordValid) {
                 showToast(getString(R.string.error_password_short))
             } else {
-                viewModel.login(email, password)
+                viewModel.login(LoginRequest(email, password))
             }
         }
     }
 
     private fun observeLoginResponse() {
-        viewModel.loginResponse.observe(this) { loginResponse ->
-            if (loginResponse.error == true) {
-                showToast(loginResponse.message ?: getString(R.string.login_failed))
+        viewModel.loginResult.observe(this) { loginResponse ->
+            if (loginResponse.token.isNullOrEmpty()) {
+                showToast(getString(R.string.login_failed))
             } else {
-                loginResponse.loginResult?.let { loginResult ->
+                loginResponse.user. let {
                     viewModel.saveSession(
                         UserModel(
-                            name = loginResult.name,
-                            email = binding.emailEditText.text.toString(),
-                            token = loginResult.token
+                            name = loginResponse.user.name,
+                            email = loginResponse.user.email,
+                            token = loginResponse.token
                         )
                     )
-                    showSuccessDialog(loginResult.name)
                 }
+                showSuccessDialog(loginResponse.user.name)
             }
+        }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            showToast(errorMessage)
         }
 
         viewModel.isLoading.observe(this) { isLoading ->

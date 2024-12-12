@@ -44,6 +44,13 @@
     <string name="cancel">Cancel</string>
     <string name="title_alert_logout">Logout Confirmation</string>
     <string name="message_alert_logout">Are you sure you want to log out of your account? This will end your session.</string>
+    <string name="value_language">Value Language</string>
+    <string name="language">Language</string>
+    <string name="language_icon">Language Icon</string>
+    <string name="title_alert_language">Choose Language</string>
+    <string name="language_indonesia">Bahasa Indonesia</string>
+    <string name="language_english">English</string>
+    <string name="ok">OK</string>
 
     <!--Welcome Activity-->-
     <string name="title_welcome_page">Welcome to Fruitastic!</string>
@@ -76,13 +83,7 @@
     <string name="error_empty_address">Address is required</string>
     <string name="error_invalid_email">Enter a valid email</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
-
-    <string name="value_language">Value Language</string>
-    <string name="language">Language</string>
-    <string name="language_icon">Language Icon</string>
-    <string name="title_alert_language">Choose Language</string>
-    <string name="language_indonesia">Bahasa Indonesia</string>
-    <string name="language_english">English</string>
-    <string name="ok">OK</string>
+    <string name="network_error">Network error</string>
+    <string name="unknown_error">Unknown error</string>
 
 </resources>

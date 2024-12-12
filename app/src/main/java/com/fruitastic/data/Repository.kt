@@ -1,15 +1,17 @@
 package com.fruitastic.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.data.local.room.HistoryDao
 import com.fruitastic.data.pref.AppPreferences
 import com.fruitastic.data.pref.UserModel
+import com.fruitastic.data.remote.request.LoginRequest
+import com.fruitastic.data.remote.request.RegisterRequest
 import com.fruitastic.data.remote.response.LoginResponse
 import com.fruitastic.data.remote.response.RegisterResponse
 import com.fruitastic.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 
 class Repository private constructor(
     private val apiService: ApiService,
@@ -17,8 +19,6 @@ class Repository private constructor(
     private val appPreferences: AppPreferences
 
 ) {
-
-    private val result = MediatorLiveData<Result<List<HistoryEntity>>>()
 
     fun getThemeSettings():Flow<Boolean> {
         return appPreferences.getThemeSetting()
@@ -56,12 +56,12 @@ class Repository private constructor(
         appPreferences.logout()
     }
 
-    suspend fun register(name: String, email: String, password: String, ): RegisterResponse {
-        return apiService.register(name, email, password)
+    suspend fun register(request: RegisterRequest): Response<RegisterResponse> {
+        return apiService.register(request)
     }
 
-    suspend fun login(email: String, password: String): LoginResponse {
-        return apiService.login(email, password)
+    suspend fun login(request: LoginRequest): Response<LoginResponse> {
+        return apiService.login(request)
     }
 
     fun getHistory(): LiveData<List<HistoryEntity>> {

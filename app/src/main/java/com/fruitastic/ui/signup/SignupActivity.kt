@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import com.fruitastic.BaseActivity
 import com.fruitastic.R
 import com.fruitastic.data.ViewModelFactory
+import com.fruitastic.data.remote.request.RegisterRequest
 import com.fruitastic.databinding.ActivitySignupBinding
 import com.fruitastic.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -34,7 +35,7 @@ class SignupActivity : BaseActivity() {
     }
 
     private fun setupAction() {
-        binding.nameEditText.doOnTextChanged{ text, start, before, count ->
+        binding.nameEditText.doOnTextChanged{ text, _, _, _ ->
             if (text!!.isEmpty()) {
                 binding.nameEditTextLayout.error = getString(R.string.error_empty_name)
             } else {
@@ -42,7 +43,7 @@ class SignupActivity : BaseActivity() {
             }
         }
 
-        binding.addressEditText.doOnTextChanged{ text, start, before, count ->
+        binding.addressEditText.doOnTextChanged{ text, _, _, _ ->
             if (text!!.isEmpty()) {
                 binding.addressEditTextLayout.error = getString(R.string.error_empty_address)
             } else {
@@ -50,7 +51,7 @@ class SignupActivity : BaseActivity() {
             }
         }
 
-        binding.emailEditText.doOnTextChanged{ text, start, before, count ->
+        binding.emailEditText.doOnTextChanged{ text, _, _, _ ->
             if (!Patterns.EMAIL_ADDRESS.matcher(text.toString()).matches()) {
                 binding.emailEditTextLayout.error = getString(R.string.error_invalid_email)
             } else {
@@ -58,7 +59,7 @@ class SignupActivity : BaseActivity() {
             }
         }
 
-        binding.passwordEditText.doOnTextChanged{ text, start, before, count ->
+        binding.passwordEditText.doOnTextChanged{ text, _, _, _ ->
             if (text!!.length < 8) {
                 binding.passwordEditTextLayout.error = getString(R.string.error_password_short)
             } else {
@@ -81,15 +82,15 @@ class SignupActivity : BaseActivity() {
             } else if (password.isEmpty() || !isPasswordValid) {
                 showToast(getString(R.string.error_password_short))
             } else {
-                viewModel.register(name, email, password)
+                viewModel.register(RegisterRequest(name, email, password, address))
             }
         }
     }
 
     private fun observeRegisterResponse() {
-        viewModel.registerResponse.observe(this) { loginResponse ->
-            if (loginResponse.error == true) {
-                showToast(loginResponse.message ?: getString(R.string.register_failed))
+        viewModel.registerResult.observe(this) { registerResponse ->
+            if (registerResponse == null) {
+                showToast(getString(R.string.register_failed))
             } else {
                 showSuccessDialog(binding.emailEditText.text.toString())
             }
@@ -97,6 +98,10 @@ class SignupActivity : BaseActivity() {
 
         viewModel.isLoading.observe(this) { isLoading ->
             showLoading(isLoading)
+        }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            showToast(errorMessage)
         }
     }
 

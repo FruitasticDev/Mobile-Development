@@ -1,35 +1,43 @@
 package com.fruitastic.ui.signup
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fruitastic.R
 import com.fruitastic.data.Repository
-import com.fruitastic.data.remote.response.ErrorResponse
+import com.fruitastic.data.remote.request.RegisterRequest
 import com.fruitastic.data.remote.response.RegisterResponse
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 class SignupViewModel(private val repository: Repository) : ViewModel() {
-
-    private val _registerResponse = MutableLiveData<RegisterResponse>()
-    val registerResponse: LiveData<RegisterResponse> get() = _registerResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun register(name: String, email: String, password: String) {
+    private val _registerResult = MutableLiveData<RegisterResponse>()
+    val registerResult: LiveData<RegisterResponse> get() = _registerResult
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
+
+    @SuppressLint("StaticFieldLeak")
+    private lateinit var context: Context
+
+    fun register(request: RegisterRequest) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.register(name, email, password)
-                _registerResponse.postValue(response)
-            } catch (e: HttpException) {
-                val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-                val errorMessage = errorBody.message
-                _registerResponse.postValue(RegisterResponse(error = true, message = errorMessage))
+                val response = repository.register(request)
+                if (response.isSuccessful) {
+                    _registerResult.postValue(response.body())
+                } else {
+                    _errorMessage.postValue(response.errorBody()?.string() ?: context.getString(R.string.unknown_error))
+                }
+            } catch (e: Exception) {
+                _errorMessage.postValue("Error: ${e.message ?: R.string.network_error}")
             } finally {
                 _isLoading.value = false
             }
