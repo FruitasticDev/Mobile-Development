@@ -21,7 +21,7 @@ class SettingFragment : Fragment() {
     private val viewModel: SettingViewModel by viewModels {
         com.fruitastic.data.ViewModelFactory.getInstance(requireActivity())
     }
-    private lateinit var selectedLanguage: String;
+    private lateinit var selectedLanguage: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

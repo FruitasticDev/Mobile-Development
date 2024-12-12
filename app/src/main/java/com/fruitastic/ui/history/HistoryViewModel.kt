@@ -15,4 +15,10 @@ class HistoryViewModel(private val repository: Repository) : ViewModel() {
             repository.insertHistory(historyEntity)
         }
     }
+
+    fun deleteHistory(history: HistoryEntity) {
+        viewModelScope.launch {
+            repository.deleteHistory(history)
+        }
+    }
 }

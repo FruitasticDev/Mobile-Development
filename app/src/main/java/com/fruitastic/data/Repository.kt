@@ -82,6 +82,10 @@ class Repository private constructor(
         historyDao.insertHistory(listOf(historyEntity))
     }
 
+    suspend fun deleteHistory(history: HistoryEntity) {
+        historyDao.delete(history)
+    }
+
     suspend fun predict(image: MultipartBody.Part): PredictResponse {
         return apiServiceModel.predict(image)
     }

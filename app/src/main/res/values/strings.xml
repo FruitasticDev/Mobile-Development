@@ -27,6 +27,7 @@
     <string name="time">Time</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
+    <string name="empty_history">History data is not available</string>
 
     <!--Settings Fragment-->
     <string name="my_account">My Account</string>
@@ -42,7 +43,6 @@
     <string name="my_email">My Email</string>
     <string name="logout">Logout</string>
     <string name="auto_save_to_history">Auto save to history</string>
-    <string name="email_invalid">Email Invalid</string>
     <string name="cancel">Cancel</string>
     <string name="title_alert_logout">Logout Confirmation</string>
     <string name="message_alert_logout">Are you sure you want to log out of your account? This will end your session.</string>
@@ -86,9 +86,6 @@
     <string name="error_invalid_email">Enter a valid email</string>
     <string name="error_password_short">Password must be at least 8 characters</string>
     <string name="network_error">Network error</string>
-    <string name="unknown_error">Unknown error</string>
-    <string name="unknown">Unknown</string>
-    <string name="prediction_successful">Prediction successful.</string>
     <string name="logo">Logo</string>
 
 </resources>

@@ -28,6 +28,7 @@
     <string name="time">Waktu</string>
     <string name="today">Hari Ini</string>
     <string name="yesterday">Kemarin</string>
+    <string name="empty_history">Data riwayat tidak tersedia</string>
 
     <!--Settings Fragment-->
     <string name="my_account">Akun Saya</string>
@@ -43,7 +44,6 @@
     <string name="my_email">Email Saya</string>
     <string name="logout">Keluar</string>
     <string name="auto_save_to_history">Simpan otomatis ke riwayat</string>
-    <string name="email_invalid">Email tidak valid</string>
     <string name="cancel">Batal</string>
     <string name="title_alert_logout">Konfirmasi Keluar</string>
     <string name="message_alert_logout">Apakah Anda yakin ingin keluar dari akun Anda? Ini akan mengakhiri sesi Anda.</string>
@@ -87,9 +87,6 @@
     <string name="error_invalid_email">Masukkan email yang valid</string>
     <string name="error_password_short">Kata sandi harus memiliki setidaknya 8 karakter</string>
     <string name="network_error">Kesalahan jaringan</string>
-    <string name="unknown_error">Kesalahaan tidak diketahui</string>
-    <string name="unknown">Tidak diketahui</string>
-    <string name="prediction_successful">Prediksi berhasil.</string>
     <string name="logo">Logo</string>
 
 </resources>
