@@ -5,16 +5,22 @@ import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.data.local.room.HistoryDao
 import com.fruitastic.data.pref.AppPreferences
 import com.fruitastic.data.pref.UserModel
+import com.fruitastic.data.remote.request.FeedbackRequest
 import com.fruitastic.data.remote.request.LoginRequest
 import com.fruitastic.data.remote.request.RegisterRequest
+import com.fruitastic.data.remote.response.FeedbackResponse
 import com.fruitastic.data.remote.response.LoginResponse
+import com.fruitastic.data.remote.response.PredictResponse
 import com.fruitastic.data.remote.response.RegisterResponse
-import com.fruitastic.data.remote.retrofit.ApiService
+import com.fruitastic.data.remote.retrofit.ApiServiceAuth
+import com.fruitastic.data.remote.retrofit.ApiServiceModel
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 import retrofit2.Response
 
 class Repository private constructor(
-    private val apiService: ApiService,
+    private val apiServiceAuth: ApiServiceAuth,
+    private val apiServiceModel: ApiServiceModel,
     private val historyDao: HistoryDao,
     private val appPreferences: AppPreferences
 
@@ -57,11 +63,15 @@ class Repository private constructor(
     }
 
     suspend fun register(request: RegisterRequest): Response<RegisterResponse> {
-        return apiService.register(request)
+        return apiServiceAuth.register(request)
     }
 
     suspend fun login(request: LoginRequest): Response<LoginResponse> {
-        return apiService.login(request)
+        return apiServiceAuth.login(request)
+    }
+
+    suspend fun feedback(request: FeedbackRequest): Response<FeedbackResponse> {
+        return apiServiceAuth.feedback(request)
     }
 
     fun getHistory(): LiveData<List<HistoryEntity>> {
@@ -72,18 +82,23 @@ class Repository private constructor(
         historyDao.insertHistory(listOf(historyEntity))
     }
 
+    suspend fun predict(image: MultipartBody.Part): PredictResponse {
+        return apiServiceModel.predict(image)
+    }
+
 
     companion object {
         @Volatile
         private var instance: Repository? = null
 
         fun getInstance(
-            apiService: ApiService,
+            apiServiceAuth: ApiServiceAuth,
+            apiServiceModel: ApiServiceModel,
             historyDao: HistoryDao,
             appPreferences: AppPreferences
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(apiService, historyDao, appPreferences)
+                instance ?: Repository(apiServiceAuth, apiServiceModel, historyDao, appPreferences)
             }.also { instance = it }
     }
 }

@@ -23,8 +23,13 @@ import com.fruitastic.data.ViewModelFactory
 import com.fruitastic.data.local.entity.HistoryEntity
 import com.fruitastic.databinding.FragmentHomeBinding
 import com.fruitastic.getImageUri
+import com.fruitastic.reduceFileImage
 import com.fruitastic.ui.history.HistoryViewModel
+import com.fruitastic.uriToFile
 import com.yalantis.ucrop.UCrop
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class HomeFragment : Fragment() {
@@ -33,6 +38,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var cropActivityResultLauncher: ActivityResultLauncher<Intent>
     private var cameraImageUri: Uri? = null
+    private var isAutoSaveActive: Boolean = false
+    private var isSaved = false
 
     private val viewModelHistory: HistoryViewModel by viewModels {
         ViewModelFactory.getInstance(requireActivity())
@@ -77,7 +84,7 @@ class HomeFragment : Fragment() {
         binding.cameraButton.setOnClickListener { startCamera() }
         binding.analyzeButton.setOnClickListener {
             viewModel.currentImageUri?.let {
-                showResult(it)
+                analyze(it)
             } ?: run {
                 showToast(getString(R.string.empty_image_warning))
             }
@@ -85,6 +92,10 @@ class HomeFragment : Fragment() {
         binding.ivFeedback.setOnClickListener {
             val feedbackBottomSheet = FeedbackBottomSheet()
             feedbackBottomSheet.show(childFragmentManager, "FeedbackBottomSheet")
+        }
+
+        viewModel.getAutoSaveSetting().observe(viewLifecycleOwner) { isActive ->
+            isAutoSaveActive = isActive
         }
     }
 
@@ -161,40 +172,69 @@ class HomeFragment : Fragment() {
         return options
     }
 
-    // Show Result
-    private fun showResult(uri: Uri) {
-        val categories = arrayOf("Fresh", "Mild", "Rotten")
-        val category = categories.random()
-        val score = (50..100).random()
-        binding.progressIndicator.visibility = View.VISIBLE
+    // Analyze
+    private fun analyze(uri: Uri) {
+        val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+        val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData("file", imageFile.name, requestImageFile)
 
-        val color = when (category) {
-            "Fresh" -> ContextCompat.getColor(requireContext(), R.color.green)
-            "Mild" -> ContextCompat.getColor(requireContext(), R.color.orange)
-            "Rotten" -> ContextCompat.getColor(requireContext(), R.color.red)
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            showLoading(isLoading)
+        }
+
+        viewModel.predict(multipartBody)
+
+        viewModel.result.observe(viewLifecycleOwner) { result ->
+            result?.let { (category, confidence) ->
+                displayResult(uri, category, confidence)
+            }
+        }
+
+        viewModel.message.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                showToast(it)
+                viewModel.clearMessage()
+            }
+        }
+    }
+
+    private fun displayResult(uri: Uri, category: String, confidence: Float) {
+        val confidencePercentage = (confidence * 100).toInt()
+        val color = when {
+            category.contains("Fresh") -> ContextCompat.getColor(requireContext(), R.color.green)
+            category.contains("Mild") -> ContextCompat.getColor(requireContext(), R.color.orange)
+            category.contains("Rotten") -> ContextCompat.getColor(requireContext(), R.color.red)
             else -> ContextCompat.getColor(requireContext(), R.color.grey)
         }
+
+        binding.tvTitleResult.visibility = View.VISIBLE
+        binding.result.visibility = View.VISIBLE
+        binding.result.text = "$category: $confidencePercentage%"
 
         val drawable = binding.result.background as GradientDrawable
         drawable.setColor(color)
 
-        val result = "$category $score%"
-        binding.result.text = result
-        binding.tvTitleResult.visibility = View.VISIBLE
-        binding.result.visibility = View.VISIBLE
-        binding.progressIndicator.visibility = View.GONE
-        viewModel.getAutoSaveSetting().observe(viewLifecycleOwner) { isAutoSaveActive ->
-            if (isAutoSaveActive) {
-                saveToHistory(uri, category, score)
-            } else {
-                binding.saveButton.visibility = View.VISIBLE
-                binding.saveButton.setOnClickListener {
-                    saveToHistory(uri, category, score)
+        isSaved = false
+
+        if (isAutoSaveActive) {
+            if (!isSaved) {
+                saveToHistory(uri, category, confidencePercentage)
+                isSaved = true
+            }
+        } else {
+            binding.saveButton.visibility = View.VISIBLE
+            binding.saveButton.setOnClickListener {
+                // Only save if not already saved
+                if (!isSaved) {
+                    saveToHistory(uri, category, confidencePercentage)
                     binding.saveButton.visibility = View.GONE
+                    isSaved = true
                 }
             }
         }
     }
+
+
 
     // Save to History
     private fun saveToHistory(uri: Uri, result: String, score: Int) {
@@ -211,6 +251,10 @@ class HomeFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

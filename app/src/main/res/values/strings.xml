@@ -85,5 +85,8 @@
     <string name="error_password_short">Password must be at least 8 characters</string>
     <string name="network_error">Network error</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="unknown">Unknown</string>
+    <string name="prediction_successful">Prediction successful.</string>
+    <string name="logo">Logo</string>
 
 </resources>

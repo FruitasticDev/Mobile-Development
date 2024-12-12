@@ -1,12 +1,9 @@
 package com.fruitastic.ui.login
 
-import android.annotation.SuppressLint
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fruitastic.R
 import com.fruitastic.data.Repository
 import com.fruitastic.data.pref.UserModel
 import com.fruitastic.data.remote.request.LoginRequest
@@ -24,9 +21,6 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    @SuppressLint("StaticFieldLeak")
-    private lateinit var context: Context
-
     fun saveSession(user: UserModel) {
         viewModelScope.launch {
             repository.saveSession(user)
@@ -41,10 +35,10 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                 if (response.isSuccessful) {
                     _loginResult.postValue(response.body())
                 } else {
-                    _errorMessage.postValue(response.errorBody()?.string() ?: context.getString(R.string.unknown_error))
+                    _errorMessage.postValue(response.errorBody()?.string() ?: "Unknown Error")
                 }
             } catch (e: Exception) {
-                _errorMessage.postValue("Error: ${e.message ?: R.string.network_error}")
+                _errorMessage.postValue("Error: ${e.message ?: "Network Error"}")
             } finally {
                 _isLoading.value = false
             }

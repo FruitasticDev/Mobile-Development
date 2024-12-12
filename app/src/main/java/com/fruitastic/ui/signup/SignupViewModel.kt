@@ -1,12 +1,9 @@
 package com.fruitastic.ui.signup
 
-import android.annotation.SuppressLint
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fruitastic.R
 import com.fruitastic.data.Repository
 import com.fruitastic.data.remote.request.RegisterRequest
 import com.fruitastic.data.remote.response.RegisterResponse
@@ -23,9 +20,6 @@ class SignupViewModel(private val repository: Repository) : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    @SuppressLint("StaticFieldLeak")
-    private lateinit var context: Context
-
     fun register(request: RegisterRequest) {
         _isLoading.value = true
         viewModelScope.launch {
@@ -34,10 +28,10 @@ class SignupViewModel(private val repository: Repository) : ViewModel() {
                 if (response.isSuccessful) {
                     _registerResult.postValue(response.body())
                 } else {
-                    _errorMessage.postValue(response.errorBody()?.string() ?: context.getString(R.string.unknown_error))
+                    _errorMessage.postValue(response.errorBody()?.string() ?: "Unknown Error")
                 }
             } catch (e: Exception) {
-                _errorMessage.postValue("Error: ${e.message ?: R.string.network_error}")
+                _errorMessage.postValue("Error: ${e.message ?: "Network Error"}")
             } finally {
                 _isLoading.value = false
             }

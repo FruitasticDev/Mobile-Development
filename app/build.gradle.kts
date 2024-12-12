@@ -17,7 +17,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://backend-dot-capstone-444105.et.r.appspot.com/\"")
+        buildConfigField("String", "AUTH_BASE_URL", "\"https://backend-dot-capstone-444105.et.r.appspot.com/auth/\"")
+        buildConfigField("String", "PREDICT_BASE_URL", "\"https://capstone-444105.et.r.appspot.com/\"")
     }
 
     buildTypes {
@@ -73,11 +74,11 @@ dependencies {
     //Ucrop
     implementation (libs.ucrop)
 
-    implementation("androidx.activity:activity-ktx:1.9.3")
+    implementation(libs.androidx.activity.ktx)
 
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation (libs.logging.interceptor)
+    implementation (libs.retrofit)
+    implementation (libs.retrofit2.converter.gson)
 
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation (libs.androidx.recyclerview)
 }

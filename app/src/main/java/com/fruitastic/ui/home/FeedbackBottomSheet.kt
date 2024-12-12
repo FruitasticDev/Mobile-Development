@@ -6,9 +6,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.button.MaterialButton
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.fruitastic.R
+import com.fruitastic.data.ViewModelFactory
+import com.fruitastic.data.remote.request.FeedbackRequest
+import com.fruitastic.ui.home.HomeViewModel
 
 class FeedbackBottomSheet : BottomSheetDialogFragment() {
+
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,14 +31,22 @@ class FeedbackBottomSheet : BottomSheetDialogFragment() {
         submitButton.setOnClickListener {
             val feedback = feedbackInput.text.toString()
             if (feedback.isNotEmpty()) {
-                Toast.makeText(context, "Feedback sent: $feedback", Toast.LENGTH_SHORT).show()
-                dismiss()
+                viewModel.feedback(FeedbackRequest(feedback))
+                viewModel.messageFeedback.observe(viewLifecycleOwner) { message ->
+                    if (message != null) {
+                        showToast(message)
+                        dismiss()
+                    }
+                }
             } else {
-                Toast.makeText(context,
-                    getString(R.string.please_input_feedback_first), Toast.LENGTH_SHORT).show()
+                showToast(R.string.please_input_feedback_first.toString())
             }
         }
 
         return view
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

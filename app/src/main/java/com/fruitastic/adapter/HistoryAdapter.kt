@@ -35,10 +35,10 @@ class HistoryAdapter : ListAdapter<HistoryEntity, HistoryAdapter.MyViewHolder>(D
     ) {
         fun bind(history: HistoryEntity) {
             val result = "${history.result} ${history.score}%"
-            val color = when (history.result) {
-                "Fresh" -> ContextCompat.getColor(binding.root.context, R.color.green)
-                "Mild" -> ContextCompat.getColor(binding.root.context, R.color.orange)
-                "Rotten" -> ContextCompat.getColor(binding.root.context, R.color.red)
+            val color = when {
+                history.result.contains("Fresh", true) -> ContextCompat.getColor(binding.root.context, R.color.green)
+                history.result.contains("Mild", true) -> ContextCompat.getColor(binding.root.context, R.color.orange)
+                history.result.contains("Rotten", true) -> ContextCompat.getColor(binding.root.context, R.color.red)
                 else -> ContextCompat.getColor(binding.root.context, R.color.grey)
             }
 
