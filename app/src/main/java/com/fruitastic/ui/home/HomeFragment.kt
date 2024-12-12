@@ -147,6 +147,7 @@ class HomeFragment : Fragment() {
             binding.tvTitleResult.visibility = View.GONE
             binding.result.visibility = View.GONE
             binding.saveButton.visibility = View.GONE
+            isSaved = false
         } ?: run {
             binding.previewImageView.setImageResource(R.drawable.placeholder)
         }
@@ -174,9 +175,12 @@ class HomeFragment : Fragment() {
 
     // Analyze
     private fun analyze(uri: Uri) {
+        isSaved = false
         val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
         val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData("file", imageFile.name, requestImageFile)
+
+        viewModel.clearResult()
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             showLoading(isLoading)
@@ -234,8 +238,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-
     // Save to History
     private fun saveToHistory(uri: Uri, result: String, score: Int) {
         val currentTime = System.currentTimeMillis()
@@ -246,6 +248,7 @@ class HomeFragment : Fragment() {
             time = currentTime,
         )
         viewModelHistory.insertHistory(historyEntity)
+        isSaved = true
     }
 
 

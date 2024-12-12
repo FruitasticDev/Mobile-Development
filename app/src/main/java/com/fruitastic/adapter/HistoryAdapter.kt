@@ -61,10 +61,10 @@ class HistoryAdapter : ListAdapter<HistoryEntity, HistoryAdapter.MyViewHolder>(D
 
             return when {
                 dateTime.toLocalDate() == now.toLocalDate() -> {
-                    "Today, ${dateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))}"
+                    "${binding.root.context.getString(R.string.today)}, ${dateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))}"
                 }
                 dateTime.toLocalDate() == now.toLocalDate().minusDays(1) -> {
-                    "Yesterday, ${dateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))}"
+                    "${binding.root.context.getString(R.string.yesterday)}, ${dateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))}"
                 }
                 else -> {
                     dateTime.format(formatter)

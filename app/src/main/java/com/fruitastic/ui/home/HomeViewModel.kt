@@ -15,8 +15,8 @@ import okhttp3.MultipartBody
 class HomeViewModel(private val repository: Repository) :ViewModel() {
     var currentImageUri: Uri? = null
 
-    private val _result = MutableLiveData<Pair<String, Float>>()
-    val result: LiveData<Pair<String, Float>> get() = _result
+    private val _result = MutableLiveData<Pair<String, Float>?>()
+    val result: MutableLiveData<Pair<String, Float>?> get() = _result
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -76,4 +76,9 @@ class HomeViewModel(private val repository: Repository) :ViewModel() {
     fun clearMessage() {
         _message.value = null
     }
+
+    fun clearResult() {
+        _result.value = null
+    }
+
 }

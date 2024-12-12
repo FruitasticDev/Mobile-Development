@@ -26,6 +26,8 @@
     <!--Item History-->
     <string name="result">Hasil</string>
     <string name="time">Waktu</string>
+    <string name="today">Hari Ini</string>
+    <string name="yesterday">Kemarin</string>
 
     <!--Settings Fragment-->
     <string name="my_account">Akun Saya</string>
@@ -40,7 +42,7 @@
     <string name="inactive">Nonaktif</string>
     <string name="my_email">Email Saya</string>
     <string name="logout">Keluar</string>
-    <string name="auto_save_to_history">Simpan otomatis ke histori</string>
+    <string name="auto_save_to_history">Simpan otomatis ke riwayat</string>
     <string name="email_invalid">Email tidak valid</string>
     <string name="cancel">Batal</string>
     <string name="title_alert_logout">Konfirmasi Keluar</string>

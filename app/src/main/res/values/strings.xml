@@ -25,6 +25,8 @@
     <!--Item History-->
     <string name="result">Result</string>
     <string name="time">Time</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 
     <!--Settings Fragment-->
     <string name="my_account">My Account</string>
