@@ -26,7 +26,7 @@ These instructions will guide you through the process of setting up and running 
 
 Clone the repository:
 ```bash
-git clone git@github.com:FruitasticDev/MobileDevelopment.git
+git clone https://github.com/FruitasticDev/MobileDevelopment.git
 ```
 
 Navigate to the project directory:
