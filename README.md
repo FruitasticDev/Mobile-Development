@@ -34,7 +34,7 @@ Navigate to the project directory:
 cd MobileDevelopment
 ```
 
-Finally, open the JasaKarya directory in Android Studio.
+Finally, open the Fruitastic directory in Android Studio.
 
 ## Install the APK
 
