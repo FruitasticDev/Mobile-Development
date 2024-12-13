@@ -17,7 +17,7 @@
 ![Screenshots](https://github.com/user-attachments/assets/0ee28ff7-1aa9-41ee-bb37-e449fec2a0ba)
 
 ## Compatibility
-  - **Android Studio Ladybug** | 2024.2.1 Patch 1
+  - **[Android Studio Ladybug](https://developer.android.com/studio?hl=id)** | 2024.2.1 Patch 1
 
 ## Opening This Project
 
@@ -37,5 +37,5 @@ Finally, open the JasaKarya directory in Android Studio.
 
 ## Install the APK
 
-**[Fruitastic APK](https://drive.google.com/file/d/1R6SwXpUkVcwEt3QZlI60d9ZufoC2Y90i/view?usp=drive_link)**
+- **[Fruitastic APK](https://drive.google.com/file/d/1R6SwXpUkVcwEt3QZlI60d9ZufoC2Y90i/view?usp=drive_link)**
 
