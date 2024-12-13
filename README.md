@@ -17,7 +17,7 @@
 ![Screenshots](https://github.com/user-attachments/assets/0ee28ff7-1aa9-41ee-bb37-e449fec2a0ba)
 
 ## Compatibility
-  - **[Android Studio Ladybug](https://developer.android.com/studio?hl=id)** | 2024.2.1 Patch 1
+  - **[Android Studio](https://developer.android.com/studio?hl=id) Ladybug** | 2024.2.1 Patch 1
 
 ## Opening This Project
 
