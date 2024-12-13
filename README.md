@@ -19,6 +19,7 @@
 ## Compatibility
   - **[Android Studio](https://developer.android.com/studio?hl=id) Ladybug** | 2024.2.1 Patch 1
 
+
 ## Opening This Project
 
 These instructions will guide you through the process of setting up and running the Mobile Development project.
